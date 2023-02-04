@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TrafficGuard.Data;
 using TrafficGuard.Models;
 using TrafficGuard.Services;
 
 namespace TrafficGuard.Controllers
 {
+    [Authorize]
     public class AccidentController : Controller
     {
         private readonly TrafficManagerAccidentDBContext _dbContext;
