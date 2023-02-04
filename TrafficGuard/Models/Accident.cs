@@ -17,7 +17,7 @@ namespace TrafficGuard.Models
         public int? NumVehicles { get; set; }
         [StringLength(255)]
         public string? Description { get; set; }
-        [StringLength(50)]
+        [StringLength(255)]
         [Unicode(false)]
         public string? PathToFiles { get; set; }
         public int TrustWorthyRating { get; set; }

@@ -35,8 +35,6 @@ namespace TrafficGuard.Data
         {
             modelBuilder.Entity<Accident>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.HasOne(d => d.Location)
                     .WithMany(p => p.Accidents)
                     .HasForeignKey(d => d.LocationId)
@@ -44,15 +42,8 @@ namespace TrafficGuard.Data
                     .HasConstraintName("FK_Accidents_Locations");
             });
 
-            modelBuilder.Entity<City>(entity =>
-            {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-            });
-
             modelBuilder.Entity<District>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.HasOne(d => d.City)
                     .WithMany(p => p.Districts)
                     .HasForeignKey(d => d.CityId)
@@ -62,8 +53,6 @@ namespace TrafficGuard.Data
 
             modelBuilder.Entity<Location>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.HasOne(d => d.District)
                     .WithMany(p => p.Locations)
                     .HasForeignKey(d => d.DistrictId)
