@@ -1,13 +1,25 @@
-﻿namespace TrafficGuard.Models
-{
-    public class City
-    {
-        private int id;
-        private string? name;
-        private List<District> districts;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
-        public int Id { get => id; set => id = value; }
-        public string Name { get => name; set => name = value; }
-        public List<District> Districts { get => districts; set => districts = value; }
+namespace TrafficGuard.Models
+{
+    public partial class City
+    {
+        public City()
+        {
+            Districts = new HashSet<District>();
+        }
+
+        [Key]
+        public int Id { get; set; }
+        [StringLength(50)]
+        [Unicode(false)]
+        public string? Name { get; set; }
+
+        [InverseProperty("City")]
+        public virtual ICollection<District> Districts { get; set; }
     }
 }

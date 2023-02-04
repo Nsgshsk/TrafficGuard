@@ -1,14 +1,31 @@
-﻿namespace TrafficGuard.Models
-{
-    public class Location
-    {
-        private int id;
-        private double latitude;
-        private double longitude;
-        private Accident accident;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
-        public int Id { get => id; set => id = value; }
-        public double Latitude { get => latitude; set => latitude = value; }
-        public double Longitude { get => longitude; set => longitude = value; }
+namespace TrafficGuard.Models
+{
+    public partial class Location
+    {
+        public Location()
+        {
+            Accidents = new HashSet<Accident>();
+        }
+
+        [Key]
+        public int Id { get; set; }
+        [Column(TypeName = "decimal(18, 0)")]
+        public decimal Latitude { get; set; }
+        [Column(TypeName = "decimal(18, 0)")]
+        public decimal Longitude { get; set; }
+        [Column("District_Id")]
+        public int DistrictId { get; set; }
+
+        [ForeignKey("DistrictId")]
+        [InverseProperty("Locations")]
+        public virtual District District { get; set; } = null!;
+        [InverseProperty("Location")]
+        public virtual ICollection<Accident> Accidents { get; set; }
     }
 }

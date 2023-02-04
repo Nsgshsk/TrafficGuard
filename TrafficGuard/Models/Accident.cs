@@ -1,19 +1,29 @@
-﻿namespace TrafficGuard.Models
-{
-    public class Accident
-    {
-        private int id;
-        private DateTime dateTime;
-        private int numVehicles;
-        private string description;
-        private string pathToFiles;
-        private int trustWorthyRating;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
-        public int Id { get => id; set => id = value; }
-        public DateTime DateTime { get => dateTime; set => dateTime = value; }
-        public int NumVehicles { get => numVehicles; set => numVehicles = value; }
-        public string Description { get => description; set => description = value; }
-        public string PathToFiles { get => pathToFiles; set => pathToFiles = value; }
-        public int TrustWorthyRating { get => trustWorthyRating; set => trustWorthyRating = value; }
+namespace TrafficGuard.Models
+{
+    public partial class Accident
+    {
+        [Key]
+        public int Id { get; set; }
+        [Column("Location_Id")]
+        public int LocationId { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime DateTime { get; set; }
+        public int? NumVehicles { get; set; }
+        [StringLength(255)]
+        public string? Description { get; set; }
+        [StringLength(50)]
+        [Unicode(false)]
+        public string? PathToFiles { get; set; }
+        public int TrustWorthyRating { get; set; }
+
+        [ForeignKey("LocationId")]
+        [InverseProperty("Accidents")]
+        public virtual Location Location { get; set; } = null!;
     }
 }
