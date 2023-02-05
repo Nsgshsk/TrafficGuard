@@ -2,7 +2,7 @@
 {
     public class Pager
     {
-        public static string ControllerType { get; set; }
+        public static string? ControllerType { get; set; }
 
         public int TotalItems { get; private set; }
         public int CurrentPage { get; private set;}
