@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 using TrafficGuard.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +10,9 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDbContext<TrafficManagerAccidentDBContext>();
+connectionString = builder.Configuration.GetConnectionString("TrafficManagerAccidentDBConn");
+builder.Services.AddDbContext<TrafficManagerAccidentDBContext>(options =>
+    options.UseSqlServer(connectionString));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
