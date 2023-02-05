@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Location\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

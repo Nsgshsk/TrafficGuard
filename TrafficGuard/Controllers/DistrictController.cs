@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TrafficGuard.Data;
 using TrafficGuard.Models;
-using TrafficGuard.Services;
 
 namespace TrafficGuard.Controllers
 {
+    [Authorize]
     public class DistrictController : Controller
     {
         private readonly TrafficManagerAccidentDBContext _dbContext;
@@ -18,7 +19,7 @@ namespace TrafficGuard.Controllers
 
         public IActionResult Index(int pg = 1)
         {
-            PagerManager.ControllerType = "District";
+            Pager.ControllerType = "District";
 
             const int pageSize = 10;
             if (pg < 1) pg = 1;
@@ -29,16 +30,18 @@ namespace TrafficGuard.Controllers
 
             int recSkip = (pg - 1) * pageSize;
 
-            List<District> cities = _dbContext.Districts.Skip(recSkip).Take(pager.PageSize).ToList();
+            List<District> districts = _dbContext.Districts.Skip(recSkip).Take(pager.PageSize).ToList();
+            districts.ForEach(e => e.City = _dbContext.Cities.Find(e.CityId));
 
             this.ViewBag.Pager = pager;
 
-            return View(cities);
+            return View(districts);
         }
 
         public IActionResult Details(int id)
         {
             District district = _dbContext.Districts.Find(id);
+            district.City = _dbContext.Cities.Find(district.CityId);
             return View(district);
         }
 
@@ -46,13 +49,18 @@ namespace TrafficGuard.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
+            this.ViewBag.CityName = new SelectList(_dbContext.Cities, "Name", "Name");
             District district = _dbContext.Districts.Find(id);
+            district.City = _dbContext.Cities.Find(district.CityId);
             return View(district);
         }
 
         [HttpPost]
         public IActionResult Edit(District district)
         {
+            district.City = _dbContext.Cities.Where(e => e.Name == district.City.Name).FirstOrDefault();
+            district.CityId = district.City.Id;
+
             _dbContext.Attach(district);
             _dbContext.Entry(district).State = EntityState.Modified;
             _dbContext.SaveChanges();
@@ -63,6 +71,7 @@ namespace TrafficGuard.Controllers
         public IActionResult Delete(int id)
         {
             District district = _dbContext.Districts.Find(id);
+            district.City = _dbContext.Cities.Find(district.CityId);
             return View(district);
         }
 
@@ -78,15 +87,17 @@ namespace TrafficGuard.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            this.ViewBag.City = new SelectList(_dbContext.Cities, "Id", "Id");
+            this.ViewBag.CityName = new SelectList(_dbContext.Cities, "Name", "Name");
             District district = new District();
+            district.City = new City();
             return View(district);
         }
 
         [HttpPost]
         public IActionResult Create(District district)
         {
-            //district.CityId = _dbContext.Cities.Find(district.CityId).Id;
+            district.City = _dbContext.Cities.Where(e => e.Name == district.City.Name).FirstOrDefault();
+            district.CityId = district.City.Id;
 
             _dbContext.Attach(district);
             _dbContext.Entry(district).State = EntityState.Added;

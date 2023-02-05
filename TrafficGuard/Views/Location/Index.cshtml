@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrafficGuard.Models.District>
+﻿@model IEnumerable<TrafficGuard.Models.Location>
 
 @{
     ViewData["Title"] = "Index";
@@ -15,7 +15,7 @@
     }
 }
 
-<h1>Districts</h1>
+<h1>Locations</h1>
 
 <p>
     <a asp-action="Create" class="btn btn-sm btn-success ml-1">Create New</a>
@@ -27,10 +27,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.Latitude)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.City)
+                @Html.DisplayNameFor(model => model.Longitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.District)
             </th>
             <th></th>
         </tr>
@@ -39,10 +42,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.Latitude)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.City.Name)
+                @Html.DisplayFor(modelItem => item.Longitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.District.Name)
             </td>
             <td>
                 @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

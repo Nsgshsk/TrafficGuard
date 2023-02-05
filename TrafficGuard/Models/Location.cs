@@ -15,9 +15,11 @@ namespace TrafficGuard.Models
 
         [Key]
         public int Id { get; set; }
-        [Column(TypeName = "decimal(18, 0)")]
+        [Column(TypeName = "decimal(9, 6)")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:G8}")]
         public decimal Latitude { get; set; }
-        [Column(TypeName = "decimal(18, 0)")]
+        [Column(TypeName = "decimal(9, 6)")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:G8}")]
         public decimal Longitude { get; set; }
         [Column("District_Id")]
         public int DistrictId { get; set; }

@@ -1,4 +1,4 @@
-﻿@model TrafficGuard.Models.District
+﻿@model TrafficGuard.Models.Location
 
 @{
     ViewData["Title"] = "Delete";
@@ -9,20 +9,26 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>District</h4>
+    <h4>Location</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Latitude)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Latitude)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.City)
+            @Html.DisplayNameFor(model => model.Longitude)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.City.Name)
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.District)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.District.Name)
         </dd>
     </dl>
     

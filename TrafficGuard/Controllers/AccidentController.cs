@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TrafficGuard.Data;
 using TrafficGuard.Models;
-using TrafficGuard.Services;
 
 namespace TrafficGuard.Controllers
 {
@@ -18,7 +17,7 @@ namespace TrafficGuard.Controllers
 
         public IActionResult Index(int pg = 1)
         {
-            PagerManager.ControllerType = "Accident";
+            Pager.ControllerType = "Accident";
 
             const int pageSize = 10;
             if (pg < 1) pg = 1;

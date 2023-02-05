@@ -2,6 +2,8 @@
 {
     public class Pager
     {
+        public static string ControllerType { get; set; }
+
         public int TotalItems { get; private set; }
         public int CurrentPage { get; private set;}
         public int PageSize { get; private set;}
