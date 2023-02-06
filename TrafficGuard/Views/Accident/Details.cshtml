@@ -1,0 +1,59 @@
+﻿@model TrafficGuard.Models.Accident
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Accident</h4>
+    <hr />
+    <dl class="row">
+        <div>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DateTime)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DateTime)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NumVehicles)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumVehicles)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PathToFiles)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PathToFiles)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TrustWorthyRating)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TrustWorthyRating)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => modelItem.Location.Latitude) | @Html.DisplayFor(modelItem => modelItem.Location.Longitude)
+            </dd>
+
+        </div>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

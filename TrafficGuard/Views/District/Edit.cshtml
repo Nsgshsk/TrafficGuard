@@ -22,7 +22,7 @@
             <div class="form-group">
                 <label asp-for="City.Name" class="control-label">City</label>
                 <select asp-for="City.Name" class="form-control" asp-items="ViewBag.CityName">
-                    <option>Select a City</option>
+                    @*<option>Select a City</option>*@
                 </select>
                 <span asp-validation-for="City.Name" class="text-danger"></span>
             </div>

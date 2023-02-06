@@ -5,6 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<head>
+    @if (ViewBag.Error != null)
+        {
+            <script> alert('@ViewBag.Error') </script>
+        }
+</head>
+
 <h1>Create</h1>
 
 <h4>District</h4>
