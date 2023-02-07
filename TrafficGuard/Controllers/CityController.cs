@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TrafficGuard.Data;
 using TrafficGuard.Models;
+using TrafficGuard.Services;
 
 namespace TrafficGuard.Controllers
 {
@@ -78,6 +80,7 @@ namespace TrafficGuard.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewBag.Error = null;
             City city = new City();
             return View(city);
         }
@@ -86,11 +89,21 @@ namespace TrafficGuard.Controllers
         public IActionResult Create(City city)
         {
             //city.Id = _dbContext.Cities.Max(x => x.Id) + 1;
+            ViewBag.Error = null;
+            try
+            {
+                ValidateModelService.CheckModel(city);
 
-            _dbContext.Attach(city);
-            _dbContext.Entry(city).State = EntityState.Added;
-            _dbContext.SaveChanges();
-            return RedirectToAction("index");
+                _dbContext.Attach(city);
+                _dbContext.Entry(city).State = EntityState.Added;
+                _dbContext.SaveChanges();
+                return RedirectToAction("index");
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = e.Message;
+                return View(city);
+            }
         }
     }
 }

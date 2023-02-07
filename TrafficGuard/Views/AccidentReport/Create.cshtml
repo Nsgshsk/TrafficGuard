@@ -1,4 +1,4 @@
-﻿@model TrafficGuard.Models.Accident
+﻿@model TrafficGuard.Models.AccidentReport
 
 @{
     ViewData["Title"] = "Create";
@@ -8,11 +8,11 @@
 <head>
     @if (ViewBag.Error != null)
     {
-        <script>alert('@ViewBag.Error')</script>
+            <script>alert('@ViewBag.Error')</script>
     }
 </head>
 
-<h1>Create</h1>
+<h1>Report</h1>
 
 <h4>Accident</h4>
 <hr />
@@ -21,10 +21,14 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="LocationId" class="control-label">Location Id</label>
-                <select asp-for="LocationId" class ="form-control" asp-items="ViewBag.LocationId">
-                    <option>Select Location Id</option>
-                </select>
+                <label asp-for="Latitude" class="control-label"></label>
+                <input asp-for="Latitude" class="form-control" />
+                <span asp-validation-for="Latitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Longitude" class="control-label"></label>
+                <input asp-for="Longitude" class="form-control" />
+                <span asp-validation-for="Longitude" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DateTime" class="control-label"></label>
@@ -41,18 +45,21 @@
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="PathToFiles" class="control-label"></label>
                 <input asp-for="PathToFiles" class="form-control" />
                 <span asp-validation-for="PathToFiles" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            </div>*@
+            @*<div class="form-group">
                 <label asp-for="TrustWorthyRating" class="control-label"></label>
                 <input asp-for="TrustWorthyRating" class="form-control" />
                 <span asp-validation-for="TrustWorthyRating" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+            <div class="form-group">
+                <span>@TempData["msg"]</span>
             </div>
         </form>
     </div>
@@ -63,5 +70,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -103,7 +103,7 @@ namespace TrafficGuard.Controllers
 
             try
             {
-                ValidateModelService.CheckDistrict(district);
+                ValidateModelService.CheckModel(district);
 
                 district.CityId = district.City.Id;
 

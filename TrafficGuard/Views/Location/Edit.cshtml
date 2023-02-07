@@ -27,7 +27,7 @@
             <div class="form-group">
                 <label asp-for="District.Name" class="control-label">District</label>
                 <select asp-for="District.Name" class="form-control" asp-items="ViewBag.DistrictName">
-                    <option>Select a District</option>
+                    @*<option>Select a District</option>*@
                 </select>
                 <span asp-validation-for="District.Name" class="text-danger"></span>
             </div>

@@ -12,8 +12,8 @@ using TrafficGuard.Data;
 namespace TrafficGuard.Migrations
 {
     [DbContext(typeof(TrafficManagerAccidentDBContext))]
-    [Migration("20230205185527_DefaultNow")]
-    partial class DefaultNow
+    [Migration("20230207145546_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

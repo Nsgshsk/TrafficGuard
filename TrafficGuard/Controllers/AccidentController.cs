@@ -5,6 +5,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using TrafficGuard.Data;
 using TrafficGuard.Models;
+using TrafficGuard.Services;
 
 namespace TrafficGuard.Controllers
 {
@@ -85,6 +86,7 @@ namespace TrafficGuard.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewBag.Error = null;
             this.ViewBag.LocationId = new SelectList(_dbContext.Locations, "Id", "Id");
             Accident accident = new Accident();
             return View(accident);
@@ -93,10 +95,22 @@ namespace TrafficGuard.Controllers
         [HttpPost]
         public IActionResult Create(Accident accident)
         {
-            _dbContext.Attach(accident);
-            _dbContext.Entry(accident).State = EntityState.Added;
-            _dbContext.SaveChanges();
-            return RedirectToAction("index");
+            ViewBag.Error = null;
+            try
+            {
+                ValidateModelService.CheckModel(accident);
+
+                _dbContext.Attach(accident);
+                _dbContext.Entry(accident).State = EntityState.Added;
+                _dbContext.SaveChanges();
+                return RedirectToAction("index");
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = e.Message;
+                this.ViewBag.LocationId = new SelectList(_dbContext.Locations, "Id", "Id");
+                return View(accident);
+            }
         }
     }
 }

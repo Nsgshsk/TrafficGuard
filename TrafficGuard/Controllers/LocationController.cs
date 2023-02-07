@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TrafficGuard.Data;
 using TrafficGuard.Models;
+using TrafficGuard.Services;
 
 namespace TrafficGuard.Controllers
 {
@@ -87,6 +88,7 @@ namespace TrafficGuard.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewBag.Error = null;
             this.ViewBag.DistrictName = new SelectList(_dbContext.Districts, "Name", "Name");
             Location location = new Location();
             location.District = new District();
@@ -96,13 +98,24 @@ namespace TrafficGuard.Controllers
         [HttpPost]
         public IActionResult Create(Location location)
         {
+            ViewBag.Error = null;
             location.District = _dbContext.Districts.Where(e => e.Name == location.District.Name).FirstOrDefault();
-            location.DistrictId = location.District.Id;
+            try
+            {
+                ValidateModelService.CheckModel(location);
+                location.DistrictId = location.District.Id;
 
-            _dbContext.Attach(location);
-            _dbContext.Entry(location).State = EntityState.Added;
-            _dbContext.SaveChanges();
-            return RedirectToAction("index");
+                _dbContext.Attach(location);
+                _dbContext.Entry(location).State = EntityState.Added;
+                _dbContext.SaveChanges();
+                return RedirectToAction("index");
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = e.Message;
+                this.ViewBag.DistrictName = new SelectList(_dbContext.Districts, "Name", "Name");
+                return View(location);
+            }
         }
     }
 }
