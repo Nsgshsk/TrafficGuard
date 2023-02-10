@@ -63,6 +63,7 @@ function ReverseLocation() {
                 marker.bindPopup(`<b>${lngLatString}</b><p>${result.address.Match_addr}</p>`);
                 marker.openPopup();
 
+                return lngLatString;
             });
     });
 }
