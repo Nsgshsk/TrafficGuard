@@ -26,5 +26,7 @@ namespace TrafficGuard.Models
         [Unicode(false)]
         public string? PathToFiles { get; set; }
         public int TrustWorthyRating { get; } = 0;
+
+        public string Json { get; set; }
     }
 }

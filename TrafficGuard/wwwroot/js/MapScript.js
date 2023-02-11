@@ -58,12 +58,12 @@ function ReverseLocation() {
                 layerGroup.clearLayers();
                 marker = L.marker(result.latlng).addTo(layerGroup);
 
-                const lngLatString = `${Math.round(result.latlng.lng * 100000) / 100000}, ${Math.round(result.latlng.lat * 100000) / 100000}`;
+                const latLngString = `${Math.round(result.latlng.lat * 100000) / 100000}, ${Math.round(result.latlng.lng * 100000) / 100000}`;
 
-                marker.bindPopup(`<b>${lngLatString}</b><p>${result.address.Match_addr}</p>`);
+                marker.bindPopup(`<b>${latLngString}</b><p>${result.address.Match_addr}</p>`);
                 marker.openPopup();
 
-                return lngLatString;
+                var latLng = latLngString.split(", ");
             });
     });
 }

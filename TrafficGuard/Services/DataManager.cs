@@ -6,6 +6,6 @@ namespace TrafficGuard.Services
     public static class DataManager
     {
         //public static TrafficManagerAccidentDBContext dBContext { get; set; }
-        public static List<Accident> Accidents { get; set; }
+        public static string Json { get; set; }
     }
 }
