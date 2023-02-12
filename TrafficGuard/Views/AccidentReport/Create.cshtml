@@ -72,9 +72,9 @@
             <span asp-validation-for="PathToFiles" class="text-danger"></span>
             </div>*@
             <div class="form-group">
-            @*<label asp-for="Json" class="control-label"></label>*@
-            <input asp-for="Json" type="hidden" class="form-control" />
-            @*<span asp-validation-for="TrustWorthyRating" class="text-danger"></span>*@
+                @*<label asp-for="Json" class="control-label"></label>*@
+                <input asp-for="Json" type="hidden" class="form-control" />
+                @*<span asp-validation-for="TrustWorthyRating" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -121,6 +121,48 @@
                         });
                 });
             </script>
+            <script>
+                var firstMarker;
+                function getLocation() {
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(showPosition);
+                    }
+                }
+
+                function showPosition(position) {
+                    //x = "Latitude: " + position.coords.latitude +
+                    //    "<br>Longitude: " + position.coords.longitude;
+
+                    L.esri.Geocoding
+                        .reverseGeocode({
+                            apikey: apiKey
+                        })
+                        .latlng([position.coords.latitude, position.coords.longitude])
+                        .language("eng")
+
+                        .run(function (error, result) {
+                            if (error) {
+                                return;
+                            }
+
+                            layerGroup.clearLayers();
+                            marker = L.marker(result.latlng).addTo(layerGroup);
+
+                            const latLngString = `${Math.round(result.latlng.lat * 100000) / 100000}, ${Math.round(result.latlng.lng * 100000) / 100000}`;
+
+                            marker.bindPopup(`<b>${latLngString}</b><p>${result.address.Match_addr}</p>`);
+                            marker.openPopup();
+
+                            var latLng = latLngString.split(", ");
+                            document.getElementById("Latitude").value = latLng[0];
+                            document.getElementById("Longitude").value = latLng[1];
+
+                            document.getElementById("Json").value = JSON.stringify(result);
+                            console.log(document.getElementById("Json").value);
+                        });
+                }
+            </script>
+            <script>getLocation();</script>
         </div>
     </div>
 </div>
