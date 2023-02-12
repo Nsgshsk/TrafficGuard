@@ -40,10 +40,13 @@ namespace TrafficGuard.Controllers
             return View(accidents);
         }
 
+        [AllowAnonymous]
         public IActionResult Details(int id)
         {
             Accident accident = _dbContext.Accidents.Find(id);
             accident.Location = _dbContext.Locations.Find(accident.LocationId);
+            accident.Location.District = _dbContext.Districts.Find(accident.Location.DistrictId);
+            accident.Location.District.City = _dbContext.Cities.Find(accident.Location.District.CityId);
             return View(accident);
         }
 

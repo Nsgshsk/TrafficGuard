@@ -18,11 +18,12 @@ map.setMaxBounds(map.getBounds());
 /*marker*/
 var la = 0;
 var lo = 0;
-function AddMarker(la, lo) {
-    //la = parseFloat(la); lo = parseFloat(lo);
-    var latlng = L.latLng(la, lo)
-    var marker = L.marker([la,lo]).addTo(map);
-    marker.bindPopup("<b>Accident!</b><br><p>Location: " + la + " | " + lo +"</p>");
+var index;
+function AddMarker(la, lo, index) {
+    var marker = L.marker([la, lo]).addTo(map);
+    var message = `<b>Accident!</b><br><p>Location: ` + la + ` | ` + lo + `</p>`;
+    if (typeof index !== "undefined") { message += `<p><a href="https://localhost:7104/Accident/Details/` + index + `">More Details</a></p>`; }
+    marker.bindPopup(message);
 }
 
 /*PopUp event*/
