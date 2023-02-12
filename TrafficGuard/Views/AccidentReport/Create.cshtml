@@ -36,34 +36,34 @@
 <h1>Report</h1>
 
 <h4>Accident</h4>
-<hr />
+@*<hr />*@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Latitude" class="control-label"></label>
-                <input asp-for="Latitude" class="form-control" />
+                <input asp-for="Latitude" class="form-control" style="border:none;" />
                 <span asp-validation-for="Latitude" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Longitude" class="control-label"></label>
-                <input asp-for="Longitude" class="form-control" />
+                <input asp-for="Longitude" class="form-control" style="border:none;" />
                 <span asp-validation-for="Longitude" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DateTime" class="control-label"></label>
-                <input asp-for="DateTime" class="form-control" />
+                <input asp-for="DateTime" class="form-control" style="border:none;" />
                 <span asp-validation-for="DateTime" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="NumVehicles" class="control-label"></label>
-                <input asp-for="NumVehicles" class="form-control" />
+                <input asp-for="NumVehicles" class="form-control" style="border:none;" />
                 <span asp-validation-for="NumVehicles" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+                <input asp-for="Description" class="form-control" style="border:none;" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             @*<div class="form-group">
@@ -77,6 +77,7 @@
                 @*<span asp-validation-for="TrustWorthyRating" class="text-danger"></span>*@
             </div>
             <div class="form-group">
+                <p></p>
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
             <div class="form-group">

@@ -1,5 +1,37 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
+<style>
+    a:link {
+        color: pink;
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: pink;
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: white;
+        background-color: transparent;
+        text-decoration: underline;
+    }
+
+    a:active {
+        color: white;
+        background-color: transparent;
+        text-decoration: underline;
+    }
+
+    body {
+        background-image: url('https://www.sia-partners.com/sites/default/files/article/cover_picture/2020-06/iStock-1082720986.jpg');
+        background-size: cover
+    }
+</style>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,7 +59,7 @@
                         </li>
 
                         @{
-                            if (this.User != default && this.User.Identity.IsAuthenticated)
+                            if (this.User != default && this.User.Identity!.IsAuthenticated)
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Accident" asp-action="Index">Accidents</a>
@@ -68,7 +100,7 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="container" style="color:white;">
             &copy; 2023 - TrafficGuard - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
