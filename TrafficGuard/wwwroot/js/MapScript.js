@@ -22,7 +22,7 @@ var index;
 function AddMarker(la, lo, index) {
     var marker = L.marker([la, lo]).addTo(map);
     var message = `<b>Accident!</b><br><p>Location: ` + la + ` | ` + lo + `</p>`;
-    if (typeof index !== "undefined") { message += `<p><a href="https://localhost:7104/Accident/Details/` + index + `">More Details</a></p>`; }
+    if (typeof index !== "undefined") { message += `<p><a href="` + document.location.origin + `/Accident/Details/` + index + `">More Details</a></p>`; }
     marker.bindPopup(message);
 }
 

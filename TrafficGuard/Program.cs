@@ -6,11 +6,11 @@ using TrafficGuard.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionStringIdentity = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionStringIdentity = builder.Configuration.GetConnectionString("IdentityDBConn");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionStringIdentity));
 
-var connectionStringTrafficGuard = builder.Configuration.GetConnectionString("TrafficManagerAccidentDBConn");
+var connectionStringTrafficGuard = builder.Configuration.GetConnectionString("TrafficGuardAccidentDBConn");
 builder.Services.AddDbContext<TrafficManagerAccidentDBContext>(options =>
     options.UseSqlServer(connectionStringTrafficGuard));
 
