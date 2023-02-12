@@ -20,7 +20,7 @@ namespace TrafficGuard.Controllers
         public IActionResult Index()
         {
             var accidents = _dbContext.Accidents.Where(e => e.TrustWorthyRating > 0).ToList();
-            accidents.ForEach(accident => { accident.Location = _dbContext.Locations.Find(accident.LocationId); });
+            accidents.ForEach(accident => { accident.Location = _dbContext.Locations.Find(accident.LocationId)!; });
             ViewBag.Accidents = accidents;
             return View();
         }

@@ -32,7 +32,7 @@ namespace TrafficGuard.Controllers
             int recSkip = (pg - 1) * pageSize;
 
             List<Location> locations = _dbContext.Locations.Skip(recSkip).Take(pager.PageSize).ToList();
-            locations.ForEach(e => e.District = _dbContext.Districts.Find(e.DistrictId));
+            locations.ForEach(e => e.District = _dbContext.Districts.Find(e.DistrictId)!);
 
             this.ViewBag.Pager = pager;
 
@@ -41,8 +41,8 @@ namespace TrafficGuard.Controllers
 
         public IActionResult Details(int id)
         {
-            Location location = _dbContext.Locations.Find(id);
-            location.District = _dbContext.Districts.Find(location.DistrictId);
+            Location location = _dbContext.Locations.Find(id)!;
+            location.District = _dbContext.Districts.Find(location.DistrictId)!;
             return View(location);
         }
 
@@ -51,15 +51,15 @@ namespace TrafficGuard.Controllers
         public IActionResult Edit(int id)
         {
             this.ViewBag.DistrictName = new SelectList(_dbContext.Districts, "Name", "Name");
-            Location location = _dbContext.Locations.Find(id);
-            location.District = _dbContext.Districts.Find(location.DistrictId);
+            Location location = _dbContext.Locations.Find(id)!;
+            location.District = _dbContext.Districts.Find(location.DistrictId)!;
             return View(location);
         }
 
         [HttpPost]
         public IActionResult Edit(Location location)
         {
-            location.District = _dbContext.Districts.Where(e => e.Name == location.District.Name).FirstOrDefault();
+            location.District = _dbContext.Districts.Where(e => e.Name == location.District.Name).FirstOrDefault()!;
             location.DistrictId = location.District.Id;
 
             _dbContext.Attach(location);
@@ -71,8 +71,8 @@ namespace TrafficGuard.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            Location location = _dbContext.Locations.Find(id);
-            location.District = _dbContext.Districts.Find(location.DistrictId);
+            Location location = _dbContext.Locations.Find(id)!;
+            location.District = _dbContext.Districts.Find(location.DistrictId)!;
             return View(location);
         }
 
@@ -99,7 +99,7 @@ namespace TrafficGuard.Controllers
         public IActionResult Create(Location location)
         {
             ViewBag.Error = null;
-            location.District = _dbContext.Districts.Where(e => e.Name == location.District.Name).FirstOrDefault();
+            location.District = _dbContext.Districts.Where(e => e.Name == location.District.Name).FirstOrDefault()!;
             try
             {
                 ValidateModelService.CheckModel(location);

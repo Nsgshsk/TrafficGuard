@@ -33,7 +33,7 @@ namespace TrafficGuard.Controllers
             int recSkip = (pg - 1) * pageSize;
 
             List<Accident> accidents = _dbContext.Accidents.Skip(recSkip).Take(pager.PageSize).ToList();
-            accidents.ForEach(e => e.Location = _dbContext.Locations.Find(e.LocationId));
+            accidents.ForEach(e => e.Location = _dbContext.Locations.Find(e.LocationId)!);
 
             this.ViewBag.Pager = pager;
 
@@ -43,10 +43,10 @@ namespace TrafficGuard.Controllers
         [AllowAnonymous]
         public IActionResult Details(int id)
         {
-            Accident accident = _dbContext.Accidents.Find(id);
-            accident.Location = _dbContext.Locations.Find(accident.LocationId);
-            accident.Location.District = _dbContext.Districts.Find(accident.Location.DistrictId);
-            accident.Location.District.City = _dbContext.Cities.Find(accident.Location.District.CityId);
+            Accident accident = _dbContext.Accidents.Find(id)!;
+            accident.Location = _dbContext.Locations.Find(accident.LocationId)!;
+            accident.Location.District = _dbContext.Districts.Find(accident.Location.DistrictId)!;
+            accident.Location.District.City = _dbContext.Cities.Find(accident.Location.District.CityId)!;
             return View(accident);
         }
 
@@ -55,8 +55,8 @@ namespace TrafficGuard.Controllers
         public IActionResult Edit(int id)
         {
             this.ViewBag.LocationId = new SelectList(_dbContext.Locations, "Id", "Id");
-            Accident accident = _dbContext.Accidents.Find(id);
-            accident.Location = _dbContext.Locations.Find(accident.LocationId);
+            Accident accident = _dbContext.Accidents.Find(id)!;
+            accident.Location = _dbContext.Locations.Find(accident.LocationId)!;
             return View(accident);
         }
 
@@ -72,8 +72,8 @@ namespace TrafficGuard.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            Accident accident = _dbContext.Accidents.Find(id);
-            accident.Location = _dbContext.Locations.Find(accident.LocationId);
+            Accident accident = _dbContext.Accidents.Find(id)!;
+            accident.Location = _dbContext.Locations.Find(accident.LocationId)!;
             return View(accident);
         }
 

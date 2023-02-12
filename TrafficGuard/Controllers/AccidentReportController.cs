@@ -29,16 +29,18 @@ namespace TrafficGuard.Controllers
         [HttpPost]
         public IActionResult Create(AccidentReport report)
         {
-            var addressJson = JsonSerializer.Deserialize<Root>(report.Json).address;
-            string region = addressJson.Region;
-            string subregion = addressJson.Subregion;
-            string city = addressJson.City;
-            string district = addressJson.District;
-            string neighborhood = addressJson.Neighborhood;
-            string addressString = addressJson.Address;
             ViewBag.Error = null;
             try
             {
+                if (report.Json == default) throw new ArgumentException("Location wasn't selected!"); 
+                var addressJson = JsonSerializer.Deserialize<Root>(report.Json!)!.address;
+                string region = addressJson!.Region!;
+                string subregion = addressJson.Subregion!;
+                string city = addressJson.City!;
+                string district = addressJson.District!;
+                string neighborhood = addressJson.Neighborhood!;
+                string addressString = addressJson.Address!;
+
                 ValidateModelService.CheckModel(report);
 
                 report.Location = new Models.Location();
