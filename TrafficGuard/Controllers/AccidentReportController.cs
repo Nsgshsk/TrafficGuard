@@ -32,7 +32,7 @@ namespace TrafficGuard.Controllers
             ViewBag.Error = null;
             try
             {
-                if (report.Json == default) throw new ArgumentException("Location wasn't selected!"); 
+                if (report.Json == default && report.Latitude == 0 && report.Longitude == 0) throw new ArgumentException("Location was not selected!"); 
                 var addressJson = JsonSerializer.Deserialize<Root>(report.Json!)!.address;
                 string region = addressJson!.Region!;
                 string subregion = addressJson.Subregion!;
