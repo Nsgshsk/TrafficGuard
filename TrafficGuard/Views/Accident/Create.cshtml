@@ -22,36 +22,37 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="LocationId" class="control-label">Location Id</label>
-                <select asp-for="LocationId" class ="form-control" asp-items="ViewBag.LocationId">
+                <select asp-for="LocationId" class="form-control" asp-items="ViewBag.LocationId" style="border:none;">
                     <option>Select Location Id</option>
                 </select>
             </div>
             <div class="form-group">
                 <label asp-for="DateTime" class="control-label"></label>
-                <input asp-for="DateTime" class="form-control" />
+                <input asp-for="DateTime" class="form-control" style="border:none;"/>
                 <span asp-validation-for="DateTime" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="NumVehicles" class="control-label"></label>
-                <input asp-for="NumVehicles" class="form-control" />
+                <input asp-for="NumVehicles" class="form-control" style="border:none;" />
                 <span asp-validation-for="NumVehicles" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+                <input asp-for="Description" class="form-control" style="border:none;" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PathToFiles" class="control-label"></label>
-                <input asp-for="PathToFiles" class="form-control" />
+                <input asp-for="PathToFiles" class="form-control" style="border:none;" />
                 <span asp-validation-for="PathToFiles" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TrustWorthyRating" class="control-label"></label>
-                <input asp-for="TrustWorthyRating" class="form-control" />
+                <input asp-for="TrustWorthyRating" class="form-control" style="border:none;" />
                 <span asp-validation-for="TrustWorthyRating" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <p></p>
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -59,7 +60,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" style="color: white">Back to List</a>
 </div>
 
 @section Scripts {

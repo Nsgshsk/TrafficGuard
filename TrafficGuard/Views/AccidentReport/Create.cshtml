@@ -57,7 +57,7 @@
                 <span asp-validation-for="DateTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NumVehicles" class="control-label"></label>
+                <label asp-for="NumVehicles" class="control-label">Number of Vehicle</label>
                 <input asp-for="NumVehicles" class="form-control" style="border:none;" />
                 <span asp-validation-for="NumVehicles" class="text-danger"></span>
             </div>
@@ -168,9 +168,9 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+@*<div>
+    <a asp-action="Index" style="color: white">Back to List</a>
+</div>*@
 
 @section Scripts {
     @{

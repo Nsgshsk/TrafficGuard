@@ -22,7 +22,7 @@ namespace TrafficGuard.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:G8}")]
         public decimal Longitude { get; set; }
         [Column("District_Id")]
-        public int DistrictId { get; set; }
+        public int? DistrictId { get; set; }
 
         [ForeignKey("DistrictId")]
         [InverseProperty("Locations")]

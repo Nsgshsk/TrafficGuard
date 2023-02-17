@@ -39,7 +39,7 @@
     <h4>Accident</h4>
     <hr />
     <dl class="row">
-        <div class="col-md-4">
+        <div class="col-md-4" style="background: rgba(255, 255, 255, 0.5)">
 
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.DateTime)
@@ -99,7 +99,10 @@
         </div>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+@if (this.User != default && this.User.Identity!.IsAuthenticated)
+{
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" style="color: white">Edit</a> |
+        <a asp-action="Index" style="color: white">Back to List</a>
+    </div>
+}

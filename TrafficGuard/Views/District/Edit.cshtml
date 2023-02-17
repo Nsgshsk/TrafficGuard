@@ -16,17 +16,18 @@
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
+                <input asp-for="Name" class="form-control" style="border:none;" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="City.Name" class="control-label">City</label>
-                <select asp-for="City.Name" class="form-control" asp-items="ViewBag.CityName">
+                <select asp-for="City.Name" class="form-control" asp-items="ViewBag.CityName" style="border:none;">
                     @*<option>Select a City</option>*@
                 </select>
                 <span asp-validation-for="City.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <p></p>
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

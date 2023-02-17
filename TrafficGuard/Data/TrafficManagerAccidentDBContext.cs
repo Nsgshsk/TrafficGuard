@@ -38,7 +38,7 @@ namespace TrafficGuard.Data
                 entity.HasOne(d => d.City)
                     .WithMany(p => p.Districts)
                     .HasForeignKey(d => d.CityId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Districts_Cities");
             });
 

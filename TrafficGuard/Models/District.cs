@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 
 namespace TrafficGuard.Models
@@ -19,7 +20,7 @@ namespace TrafficGuard.Models
         [Unicode(false)]
         public string? Name { get; set; }
         [Column("City_Id")]
-        public int CityId { get; set; }
+        public int? CityId { get; set; }
 
         [ForeignKey("CityId")]
         [InverseProperty("Districts")]

@@ -89,7 +89,7 @@ namespace TrafficGuard.Controllers
         public IActionResult Create()
         {
             ViewBag.Error = null;
-            this.ViewBag.CityName = new SelectList(_dbContext.Cities, "Name", "Name");
+            ViewBag.CityName = new SelectList(_dbContext.Cities, "Name", "Name");
             District district = new District();
             district.City = new City();
             return View(district);
