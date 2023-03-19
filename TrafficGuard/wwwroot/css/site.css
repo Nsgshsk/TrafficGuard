@@ -14,5 +14,9 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-image: url('https://www.sia-partners.com/sites/default/files/article/cover_picture/2020-06/iStock-1082720986.jpg');
+    background-size: cover;
+    width: 100%;
+    height: 100%;
 }
