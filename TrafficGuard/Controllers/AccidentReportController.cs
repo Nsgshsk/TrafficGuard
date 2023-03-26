@@ -37,7 +37,7 @@ namespace TrafficGuard.Controllers
 
             try
             {
-                if (report.Json == default && (report.Latitude == default || report.Longitude == default)) throw new ArgumentException("Location was not selected!"); 
+                if (report.Json == default || report.Latitude == default || report.Longitude == default) throw new ArgumentException("Location was not selected!"); 
 
                 var addressJson = JsonSerializer.Deserialize<Root>(report.Json!)!.address;
 
